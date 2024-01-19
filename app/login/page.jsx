@@ -63,10 +63,6 @@ const Login = () => {
           {error && <p className="error">{error}</p>}
           <button type="submit">Log In</button>
         </form>
-        <button className="google" onClick={loginWithGoogle}>
-          <p>Log In with Google</p>
-          <FcGoogle />
-        </button>
         <a href="/register">Don't have an account? Sign In Here</a>
       </div>
     </div>

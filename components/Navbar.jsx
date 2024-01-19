@@ -2,10 +2,11 @@
 
 import { Menu, Person, Search, ShoppingCart } from '@mui/icons-material'
 import { IconButton} from '@mui/material'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import '@styles/Navbar.scss'
+import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
 
@@ -13,6 +14,20 @@ const Navbar = () => {
   const user = session?.user
 
   const [dropdownMenu, setDropdownMenu] = useState(false)
+
+  const handleLogout = () => {
+    signOut({callbackUrl: "/login"})
+  }
+
+  const [query, setQuery] = useState("")
+  
+  const router = useRouter()
+  const searchWork= async () => {
+    router.push(`/search/${query}`)
+  }
+
+  const cart = user?.cart
+
   return (
     <div className='navbar'>
       <a href="/">
@@ -20,8 +35,8 @@ const Navbar = () => {
       </a>
 
       <div className='navbar_search'>
-        <input type='text' placeholder='Search...'/>
-        <IconButton>
+        <input type='text' placeholder='Search...' value={query} onChange={(e)=>setQuery(e.target.value)}/>
+        <IconButton disabled={query === ""}  onClick={searchWork}>
           <Search sx={{color: "red"}}/>
         </IconButton>
       </div>
@@ -31,7 +46,7 @@ const Navbar = () => {
       {user &&(
         <a href="/cart" className='cart'>
           <ShoppingCart sx={{color: "gray"}}/>
-          Cart <span>(2)</span>
+          Cart <span>({cart?.length})</span>
         </a>
       )}
 
@@ -58,7 +73,7 @@ const Navbar = () => {
             <Link href='/order'>order</Link>
             <Link href='/shop'>Your Shop</Link>
             <Link href='/create-work'>Sell your work</Link>
-            <a href=''>Log Out</a>
+            <a onClick={handleLogout}>Log Out</a>
            </div>
          )}
 

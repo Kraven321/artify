@@ -79,10 +79,6 @@ const Register = () => {
                 )}
                 <button type='submit'>Register</button>
             </form>
-            <button type='button' disabled={!passwordMatch} onClick={loginWithGoogle} className='google'>
-                <p>Log In with Google</p>
-                <FcGoogle/>
-            </button>
             <a href="/login">Already have an account? Log In Here</a>
         </div>
     </div>
