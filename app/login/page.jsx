@@ -34,11 +34,6 @@ const Login = () => {
       console.log(err);
     }
   };
-
-  const loginWithGoogle = () => {
-    signIn("google", { callbackUrl: "/" });
-  };
-
   return (
     <div className="login">
       <img src="/assets/login.jpg" alt="login" className="login_decor" />

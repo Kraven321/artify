@@ -54,9 +54,6 @@ const Register = () => {
         }
     };
 
-    const loginWithGoogle =  () => {
-        signIn('google'), { callbackUrl: '/' }
-    }
   return (
     <div className='register'>
         <img src="/assets/register.jpg" alt="register photo" className='register_decor' />
