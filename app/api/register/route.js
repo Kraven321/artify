@@ -28,7 +28,7 @@ export async function POST (req) {
     const profileImagePath=`C:/Users/FUNPREV/OneDrive/Área de Trabalho/artify/public/uploads/${file.name}`
     await writeFile(profileImagePath, buffer)
 
-    console.log(`open ${profileImagePath} to see the uploaded files`)
+    
 
     /* Check if user exists */
     const existingUser = await User.findOne({ email })
