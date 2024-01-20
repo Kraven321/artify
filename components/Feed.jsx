@@ -12,7 +12,7 @@ const [workList, setWorkList] = useState([])
 
 
 const getWorkList = async () =>{
-    const response = await fetch( process.env.NEXT_PUBLIC_BASE_URL+`/api/work/list/${selectedCategory}`)
+    const response = await fetch(`/api/work/list/${selectedCategory}`)
     const data = await response.json()
     setWorkList(data)
     setLoading(false)
